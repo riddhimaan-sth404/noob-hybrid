@@ -1,1 +1,4 @@
-# noob-hybrid
+## Overview
+This tool, when executed as, is designed for educational, research, and authorized security testing purposes. It demonstrates how encryption can be applied to files across a Windows system by recursively scanning the C:\ drive, encrypting files using the Fernet symmetric encryption, and targeting specific system directories such as the Windows Boot and Recovery folders. It also provides real-time status updates via a console window and attempts to reboot the system after the process completes.
+
+**Important:** This tool is intended solely for lawful and authorized use. It is **not** intended for malicious activities or unauthorized access. Always ensure you have explicit permission before running this tool on any system. Misuse of this software for harmful purposes is illegal and unethical.
